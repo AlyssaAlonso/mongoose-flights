@@ -1,0 +1,32 @@
+<%- include('../partials/header') %>
+
+<table id="list">
+  <thead>
+    <tr>
+      <th>Airline</th>
+      <th>Airline</th>
+      <th>Flight<br />Number</th>
+      <th>Departure</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% flights.forEach(function(f) { %>
+    <tr>
+      <td><%= f.airline %></td>
+      <td><%= f.airport %></td>
+      <td><%= f.flightNo %></td>
+      <% if (f.departs) { %>
+      <td><%= f.departs %></td>
+      <% } else { %> <% const createdAt = f.createdAt %> <% const oneYearLater =
+      new Date(createdAt) %> <% oneYearLater.setFullYear(createdAt.getFullYear()
+      + 1) %>
+      <td><%= oneYearLater.toString() %></td>
+      <% } %>
+      <td><a href="/flights/<%= f._id %>">DETAILS</a></td>
+    </tr>
+    <% }); %>
+  </tbody>
+</table>
+
+<%- include('../partials/footer') %>
